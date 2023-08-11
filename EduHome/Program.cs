@@ -1,13 +1,33 @@
+using EduHome.Contexts;
+using EduHome.Models.Identity;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 using System;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Services.AddDbContext<AppDbContext>(options =>
-//{
-//    options.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
-//    //options.UseSqlServer(builder.Configuration["ConnectionStrings:Default"]);
-//});
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+	options.UseSqlServer(builder.Configuration.GetConnectionString("DB"));
+});
+
+builder.Services.AddAutoMapper(typeof(Program));
+
+builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
+{
+    options.Password.RequiredLength = 8;
+	options.Password.RequireUppercase = true;
+	options.Password.RequireLowercase = true;
+	options.Password.RequireDigit = true;
+	options.Password.RequireNonAlphanumeric = true;
+
+	options.User.RequireUniqueEmail = true;
+
+	options.Lockout.MaxFailedAccessAttempts = 3;
+	options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
+	options.Lockout.AllowedForNewUsers = false;
+}).AddEntityFrameworkStores<AppDbContext>();
 
 //builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 //{
@@ -29,10 +49,10 @@ var builder = WebApplication.CreateBuilder(args);
 //    options.IdleTimeout = TimeSpan.FromSeconds(30);
 //});
 
-////builder.Services.ConfigureApplicationCookie(options =>
-////{
-////    options.LoginPath = "/Auth/Login";
-////});
+builder.Services.ConfigureApplicationCookie(options =>
+{
+	options.LoginPath = "/Auth/LogIn";
+});
 
 //Constants.mail = builder.Configuration["MailSettings:Mail"];
 //Constants.password = builder.Configuration["MailSettings:Password"];
@@ -44,8 +64,6 @@ builder.Services.AddControllersWithViews();
 var app = builder.Build();
 
 app.UseStaticFiles();
-
-//app.UseSession();
 
 app.UseAuthentication();
 app.UseAuthorization();
