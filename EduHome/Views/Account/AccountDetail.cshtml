@@ -1,0 +1,32 @@
+﻿@using EduHome.Models.Identity;
+@{
+	ViewData["Title"] = "Account details";
+}
+@model AppUser
+
+<div class="container mt-5">
+	<h1 class="mb-4">Your Account Details</h1>
+	<div class="card">
+		<div class="card-body">
+			<h5 class="card-title">Username: @Model.UserName</h5>
+			<p class="card-text"><strong>Name:</strong> @Model.Name</p>
+			<p class="card-text"><strong>Surname:</strong> @Model.Surname</p>
+			<p class="card-text"><strong>Email:</strong> @Model.Email</p>
+			<p class="card-text"><strong>Email Verified:</strong> @Model.EmailConfirmed</p>
+			@if (Model.TwoFactorEnabled)
+			{
+				<p class="card-text"><strong>Two Factor Authentication:</strong> Two-Factor Authentication is enabled for this account.</p>
+				<form asp-controller="Account" asp-action="ToggleTwoFactorAuthentication" method="post">
+					<button type="submit" class="btn btn-danger">Disable Two-Factor Authentication</button>
+				</form>
+			}
+			else
+			{
+				<p class="card-text"><strong>Two Factor Authentication:</strong> Two-Factor Authentication is disabled for this account.</p>
+				<form asp-controller="Account" asp-action="ToggleTwoFactorAuthentication" method="post">
+					<button type="submit" class="btn btn-success">Enable Two-Factor Authentication</button>
+				</form>
+			}
+		</div>
+	</div>
+</div>

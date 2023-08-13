@@ -105,4 +105,33 @@ public class AccountController : Controller
     {
         return View();
     }
+
+	[HttpPost]
+	[ValidateAntiForgeryToken]
+	public async Task<IActionResult> ToggleTwoFactorAuthentication()
+	{
+		var user = await _userManager.GetUserAsync(User);
+
+		if (user is null)
+			return NotFound();
+
+		var isTwoFactorEnabled = await _userManager.GetTwoFactorEnabledAsync(user);
+
+		await _userManager.SetTwoFactorEnabledAsync(user, !isTwoFactorEnabled);
+
+		return RedirectToAction("AccountDetail");
+	}
+
+	public async Task<IActionResult> AccountDetail()
+	{
+		if(!User.Identity.IsAuthenticated)
+			return BadRequest();
+
+		var user = await _userManager.GetUserAsync(User);
+
+		if(user is null)
+			return NotFound();
+
+		return View(user);
+	}
 }

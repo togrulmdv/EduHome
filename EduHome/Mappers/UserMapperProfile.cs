@@ -9,5 +9,6 @@ public class UserMapperProfile : Profile
     public UserMapperProfile()
     {
         CreateMap<RegisterViewModel, AppUser>().ReverseMap();
+        CreateMap<AppUser, AccountDetailViewModel>().ReverseMap();
     }
 }

@@ -51,18 +51,18 @@ public class AuthController : Controller
 		if (!ModelState.IsValid)
 			return View();
 
-		AppUser appUser = await _userManager.FindByNameAsync(loginViewModel.UsernameOrEmail);
+		//AppUser appUser = await _userManager.FindByNameAsync(loginViewModel.UsernameOrEmail);
 
-		if (appUser is null)
-		{
-			appUser = await _userManager.FindByEmailAsync(loginViewModel.UsernameOrEmail);
+		//if (appUser is null)
+		//{
+			AppUser appUser = await _userManager.FindByEmailAsync(loginViewModel.Email);
 
 			if (appUser is null)
 			{
-				ModelState.AddModelError("", "Username/Email or Password is incorrect");
+				ModelState.AddModelError("", "Email or Password is incorrect");
 				return View();
 			}
-		}
+		//}
 
 		if (!appUser.IsActive)
 		{
@@ -85,24 +85,90 @@ public class AuthController : Controller
 			return View();
 		}
 
-		if (!signInResult.Succeeded)
+        if (signInResult.RequiresTwoFactor)
+        {
+            return RedirectToAction("LogInTwoStep", new { loginViewModel.Email, loginViewModel.RememberMe, returnUrl });
+        }
+
+        if (!signInResult.Succeeded)
 		{
-			ModelState.AddModelError("", "Username/Email or Password is incorrect");
+			ModelState.AddModelError("", "Email or Password is incorrect");
 			return View();
 		}
 
-		if (!appUser.LockoutEnabled)
+        
+
+        if (!appUser.LockoutEnabled)
 		{
 			appUser.LockoutEnabled = true;
 			appUser.LockoutEnd = null;
 			await _userManager.UpdateAsync(appUser);
 		}
 
+		//if (signInResult.RequiresTwoFactor)
+		
+
 		if (returnUrl is not null)
 			return Redirect(returnUrl);
 
 		return RedirectToAction("Index", "Home");
 	}
+
+	public async Task<IActionResult> LoginTwoStep(string email, bool rememberMe, string? returnUrl)
+	{
+		var user = await _userManager.FindByEmailAsync(email);
+		if (user is null)
+		{
+			return NotFound();
+		}
+		var providers = await _userManager.GetValidTwoFactorProvidersAsync(user);
+		if (!providers.Contains("Email"))
+		{
+			return NotFound();
+		}
+		var token = await _userManager.GenerateTwoFactorTokenAsync(user, "Email");
+		var message = new MailRequest
+		{
+			ToEmail = email,
+			Subject = "Authentication token",
+			Body = token.ToString()
+		}
+		/*(new string[] { email }, "Authentication token", token)*/;
+		await _mailService.SendEmailAsync(message);
+		ViewData["ReturnUrl"] = returnUrl;
+		return View();
+	}
+
+	[HttpPost]
+	[ValidateAntiForgeryToken]
+	public async Task<IActionResult> LoginTwoStep(TwoFactorViewModel twoFactorViewModel, string? returnUrl)
+	{
+        if (!ModelState.IsValid)
+        {
+            return View();
+        }
+        var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+        if (user is null)
+        {
+            return NotFound();
+        }
+        var result = await _signInManager.TwoFactorSignInAsync("Email", twoFactorViewModel.TwoFactorCode, twoFactorViewModel.RememberMe, rememberClient: false);
+        if (!result.Succeeded)
+        {
+            ModelState.AddModelError("TwoFactorCode", "Wrong OTP");
+			return View();
+        }
+		
+		if (result.IsLockedOut)
+		{
+			//Same logic as in the Login action
+			ModelState.AddModelError("", "The account is locked out");
+			return View();
+		}
+        if (returnUrl is not null)
+            return Redirect(returnUrl);
+        return RedirectToAction("Index", "Home");
+    }
 
 	public async Task<IActionResult> LogOut()
 	{
