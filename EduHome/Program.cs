@@ -1,5 +1,7 @@
 using EduHome.Contexts;
 using EduHome.Models.Identity;
+using EduHome.Services.Implementations;
+using EduHome.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
@@ -14,6 +16,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddAutoMapper(typeof(Program));
 
+builder.Services.AddTransient<IMailService, MailService>();
+
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
     options.Password.RequiredLength = 8;
@@ -24,26 +28,18 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 
 	options.User.RequireUniqueEmail = true;
 
+	options.SignIn.RequireConfirmedEmail = true;
+
 	options.Lockout.MaxFailedAccessAttempts = 3;
 	options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(1);
 	options.Lockout.AllowedForNewUsers = false;
-}).AddEntityFrameworkStores<AppDbContext>();
+}).AddEntityFrameworkStores<AppDbContext>()
+.AddDefaultTokenProviders();
 
-//builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
-//{
-//    options.Password.RequiredLength = 8;
-//    options.Password.RequireUppercase = true;
-//    options.Password.RequireLowercase = true;
-//    options.Password.RequireDigit = true;
-//    options.Password.RequireNonAlphanumeric = true;
-
-//    options.User.RequireUniqueEmail = true;
-
-//    options.Lockout.MaxFailedAccessAttempts = 3;
-//    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromSeconds(30);
-//}).AddEntityFrameworkStores<AppDbContext>()
-//.AddDefaultTokenProviders();
-
+//builder.Services.Configure<IdentityOptions>(
+//	options => options.SignIn.RequireConfirmedEmail = true
+//);
+ 
 //builder.Services.AddSession(options =>
 //{
 //    options.IdleTimeout = TimeSpan.FromSeconds(30);
