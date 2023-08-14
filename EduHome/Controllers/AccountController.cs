@@ -2,6 +2,7 @@
 using EduHome.DataTransferObjects;
 using EduHome.Models.Identity;
 using EduHome.Services.Interfaces;
+using EduHome.Utils.Enums;
 using EduHome.ViewModels.AccountViewModels;
 using EduHome.ViewModels.AuthViewModels;
 using Microsoft.AspNetCore.Identity;
@@ -15,13 +16,15 @@ public class AccountController : Controller
 	private readonly UserManager<AppUser> _userManager;
 	private readonly IMailService _mailService;
 	private readonly IWebHostEnvironment _webHostEnvironment;
+	private readonly RoleManager<IdentityRole> _roleManager;
 
-	public AccountController(IMapper mapper, UserManager<AppUser> userManager, IMailService mailService, IWebHostEnvironment webHostEnvironment)
+	public AccountController(IMapper mapper, UserManager<AppUser> userManager, IMailService mailService, IWebHostEnvironment webHostEnvironment, RoleManager<IdentityRole> roleManager)
 	{
 		_mapper = mapper;
 		_userManager = userManager;
 		_mailService = mailService;
 		_webHostEnvironment = webHostEnvironment;
+		_roleManager = roleManager;
 	}
 
 	private async Task<string> GetEmailTemplateAsync(string link)
@@ -66,6 +69,8 @@ public class AccountController : Controller
 			}
 			return View();
 		}
+
+		await _userManager.AddToRoleAsync(newUser, Roles.Member.ToString());
 
 		var token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
 
@@ -134,4 +139,14 @@ public class AccountController : Controller
 
 		return View(user);
 	}
+
+	//public async Task<IActionResult> CreateRole()
+	//{
+	//	foreach(var role in Enum.GetValues(typeof(Roles)))
+	//	{
+	//		await _roleManager.CreateAsync(new IdentityRole { Name= role.ToString() });
+	//	}
+
+	//	return Content("OK");
+	//}
 }

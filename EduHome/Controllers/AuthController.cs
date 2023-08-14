@@ -117,16 +117,21 @@ public class AuthController : Controller
 	public async Task<IActionResult> LoginTwoStep(string email, bool rememberMe, string? returnUrl)
 	{
 		var user = await _userManager.FindByEmailAsync(email);
+		
 		if (user is null)
 		{
 			return NotFound();
 		}
+		
 		var providers = await _userManager.GetValidTwoFactorProvidersAsync(user);
+		
 		if (!providers.Contains("Email"))
 		{
 			return NotFound();
 		}
+		
 		var token = await _userManager.GenerateTwoFactorTokenAsync(user, "Email");
+		
 		var message = new MailRequest
 		{
 			ToEmail = email,
@@ -134,8 +139,11 @@ public class AuthController : Controller
 			Body = token.ToString()
 		}
 		/*(new string[] { email }, "Authentication token", token)*/;
+		
 		await _mailService.SendEmailAsync(message);
+		
 		ViewData["ReturnUrl"] = returnUrl;
+		
 		return View();
 	}
 
@@ -147,13 +155,17 @@ public class AuthController : Controller
         {
             return View();
         }
+
         var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
-        if (user is null)
+        
+		if (user is null)
         {
             return NotFound();
         }
-        var result = await _signInManager.TwoFactorSignInAsync("Email", twoFactorViewModel.TwoFactorCode, twoFactorViewModel.RememberMe, rememberClient: false);
-        if (!result.Succeeded)
+        
+		var result = await _signInManager.TwoFactorSignInAsync("Email", twoFactorViewModel.TwoFactorCode, twoFactorViewModel.RememberMe, rememberClient: false);
+        
+		if (!result.Succeeded)
         {
             ModelState.AddModelError("TwoFactorCode", "Wrong OTP");
 			return View();
@@ -165,9 +177,11 @@ public class AuthController : Controller
 			ModelState.AddModelError("", "The account is locked out");
 			return View();
 		}
-        if (returnUrl is not null)
+        
+		if (returnUrl is not null)
             return Redirect(returnUrl);
-        return RedirectToAction("Index", "Home");
+        
+		return RedirectToAction("Index", "Home");
     }
 
 	public async Task<IActionResult> LogOut()

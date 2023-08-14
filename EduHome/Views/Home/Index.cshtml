@@ -1,6 +1,8 @@
-﻿@{
+﻿@using EduHome.ViewModels.HomeViewModels;
+@{
 	ViewData["Title"] = "Home";
 }
+@model SubscribeViewModel
 
 <!-- Background Area Start -->
 <section id="slider-container" class="slider-area two">
@@ -429,13 +431,23 @@
 				<div class="newsletter-form mc_embed_signup">
 					@if (User.Identity.IsAuthenticated)
 					{
-
+						@*<form method="post" enctype="multipart/form-data">
+					<div id="mc_embed_signup_scroll" class="mc-form">
+					<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Enter your e-mail address" required>
+					<button id="mc-embedded-subscribe" class="default-btn" type="submit" name="subscribe"><span>subscribe</span></button>
+					</div>
+					</form>*@
+						<form asp-controller="Home" asp-action="Subscribe" method="post" enctype="multipart/form-data">
+							<div id="mc_embed_signup_scroll" class="mc-form">
+								<button id="mc-embedded-subscribe" class="default-btn" type="submit" name="subscribe"><span>subscribe</span></button>
+							</div>
+						</form>
 					}
 					else
 					{
-						<form method="post" enctype="multipart/form-data">
+						<form asp-controller="Home" asp-action="Subscribe" method="post" enctype="multipart/form-data">
 							<div id="mc_embed_signup_scroll" class="mc-form">
-								<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Enter your e-mail address" required>
+								<input asp-for="Email" placeholder="Enter your e-mail address" required>
 								<button id="mc-embedded-subscribe" class="default-btn" type="submit" name="subscribe"><span>subscribe</span></button>
 							</div>
 						</form>

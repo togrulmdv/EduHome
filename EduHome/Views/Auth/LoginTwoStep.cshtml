@@ -4,7 +4,7 @@
 }
 @model TwoFactorViewModel
 
-<h1>LoginTwoStep</h1>
+@*<h1>LoginTwoStep</h1>
 <hr />
 <p> Please enter your authentication code in the field below</p>
 <div class="row">
@@ -22,4 +22,55 @@
             </div>
         </form>
     </div>
+</div>*@
+
+
+<!-- Banner Area Start -->
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>two step log in</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- Banner Area End -->
+<!-- Login start -->
+<div class="login-area pt-150 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3 text-center">
+                <div class="login">
+                    <div class="login-form-container">
+                        <div class="login-text">
+                            <h2>two step log in</h2>
+                            <span>Please log in using OTP that sent to your email.</span>
+                        </div>
+                        <div class="login-form">
+                            <form method="post" enctype="multipart/form-data">
+                                <div asp-validation-summary="ModelOnly" class="text-danger" style="margin-bottom:10px"></div>
+                                <input asp-for="TwoFactorCode" placeholder="Enter OTP" style="margin-bottom:4px">
+                                <span asp-validation-for="TwoFactorCode" class="text-danger"></span>    
+                                <div class="button-box">
+                                    <div class="login-toggle-btn">
+                                        <input asp-for="RememberMe">
+                                        <label for="RememberMe">Remember me</label>
+                                    </div>
+                                    <button type="submit" class="default-btn">Log in</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Login end --> 

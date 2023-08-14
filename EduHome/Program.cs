@@ -18,6 +18,10 @@ builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddTransient<IMailService, MailService>();
 
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<AppDbContextInitializer>();
+
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
 {
     options.Password.RequiredLength = 8;
@@ -60,6 +64,13 @@ builder.Services.AddControllersWithViews();
 var app = builder.Build();
 
 app.UseStaticFiles();
+
+using(var scope = app.Services.CreateScope())
+{
+	var initializer = scope.ServiceProvider.GetRequiredService<AppDbContextInitializer>();
+	await initializer.InitializeAsync();
+	await initializer.UserSeedAsync();
+}
 
 app.UseAuthentication();
 app.UseAuthorization();
