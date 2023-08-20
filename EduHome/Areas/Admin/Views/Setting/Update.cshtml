@@ -1,0 +1,54 @@
+﻿@using EduHome.Areas.Admin.ViewModels.SettingViewModels;
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+@model UpdateSettingViewModel
+
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Update Event</h4>
+
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+
+
+
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Key</label>
+                    <input asp-for="Key" class="form-control" placeholder="Key">
+                    <span asp-validation-for="Key" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+
+
+                    <label for="exampleInputConfirmPassword1">Value</label>
+                    <div>
+                        <input asp-for="Value" class="form-control" placeholder="Value">
+
+                    </div>
+                    <span asp-validation-for="Value" class="text-danger"></span>
+
+                </div>
+                <button type="submit" asp-action="Update" class="btn btn-primary mr-2">Submit</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .then(editor => {
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+

@@ -19,10 +19,10 @@
                     </div>
                     <div class="course-details-content">
                         <h2>@Model.Name</h2>
-                        <p>@Model.ShortDescription </p>
+                        <p>@Html.Raw(Model.ShortDescription) </p>
                         <div class="course-details-left">
                             <div class="single-course-left">
-                                <p>@Model.LongDescription</p>
+                                <p>@Html.Raw(Model.LongDescription)</p>
                             </div>
                         </div>
                         <div class="course-details-right">
