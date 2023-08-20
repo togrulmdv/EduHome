@@ -18,6 +18,8 @@ builder.Services.AddAutoMapper(typeof(Program));
 
 builder.Services.AddTransient<IMailService, MailService>();
 
+builder.Services.AddScoped<IFileService, FileService>();
+
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddScoped<AppDbContextInitializer>();

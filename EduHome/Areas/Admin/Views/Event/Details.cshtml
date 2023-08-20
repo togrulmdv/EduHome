@@ -1,0 +1,35 @@
+﻿@using EduHome.Areas.Admin.ViewModels.EventViewModels;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@model DetailEventViewModel
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+
+        <div class="card-body" style="font-size:20px">
+
+            <a class="btn btn-primary" asp-action="index">GO BACK</a>
+
+            <img src="~/assets/img/event//@Model.ImageName" style="width:25%" />
+            <h1>Name:@Model.Name</h1>
+            <h1 style="font-size:15px">Description:@Model.Description</h1>
+            <h1 style="font-size:15px">Time:@Model.Time</h1>
+            <h1 style="font-size:15px">Date:@Model.Date</h1>
+            <h1 style="font-size:15px">Venue:@Model.Venue</h1>
+            @foreach(var speaker in Model.Speakers)
+            {
+                <h1>Speaker:@speaker</h1>
+            }
+            <h1>CreatedBy:@Model.CreatedBy</h1>
+            <h1>CreatedTime:@Model.CreatedDate</h1>
+            <h1>UpdatedBy:@Model.UpdatedBy</h1>
+            <h1>UpdatedTime:@Model.UpdatedDate</h1>
+
+
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+﻿@using EduHome.Areas.Admin.ViewModels.CategoryViewModels;
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+@model UpdateCategoryViewModel;
+
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Update Category</h4>
+
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+
+
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Name</label>
+                    <input asp-for="Name" class="form-control" placeholder="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Course</label>
+                    <select asp-for="CourseId" asp-items="ViewBag.Courses" multiple="multiple">Select Course</select>
+                </div>
+
+                <button type="submit" asp-action="Update" class="btn btn-primary mr-2">Submit</button>
+
+            </form>
+        </div>
+    </div>
+</div>

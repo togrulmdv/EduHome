@@ -1,0 +1,60 @@
+﻿@using EduHome.Areas.Admin.ViewModels.EventViewModels;
+
+@{
+    ViewData["Title"] = "Event";
+}
+
+@model IEnumerable<EventViewModel>
+
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Blogs</h4>
+
+                    <div class="table-responsive">
+
+                        <a class="btn btn-primary" asp-action="create">Create</a>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>IsDeleted</th>
+
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Description</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (EventViewModel Event in Model)
+                                {
+                                    <tr>
+                                        <td>@Event.IsDeleted</td>
+
+                                        <td><img src="~/assets/img/Event//@Event.ImageName" /></td>
+                                        <td>@Event.Name</td>
+                                        <td>@Event.Description</td>
+
+                                        <td><a class="btn btn-primary" asp-action="Details" asp-route-id="@Event.Id">Detail</a></td>
+                                        <td><a class="btn btn-warning" asp-action="Update" asp-route-id="@Event.Id">Update</a></td>
+
+                                        <td><a class="btn btn-danger" asp-action="Delete" asp-route-id="@Event.Id">Delete</a></td>
+
+
+
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

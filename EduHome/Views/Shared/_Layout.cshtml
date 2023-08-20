@@ -1,4 +1,7 @@
-﻿<!doctype html>
+﻿@using EduHome.ViewModels.HomeViewModels;
+@*@model SubscribeViewModel*@
+
+<!doctype html>
 <html class="no-js" lang="en">
 
 <!-- Mirrored from demo.devitems.com/eduhome/index-2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 21 Jun 2020 19:37:50 GMT -->
@@ -31,156 +34,14 @@
 		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="~/assets/http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 	<![endif]-->
 	<!-- Header Area Start -->
-	<header class="top">
-		<div class="header-top">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-8 col-sm-8 col-xs-12">
-						<div class="header-top-left">
-							<p>HAVE ANY QUESTION ?  +880 5698  598  6587</p>
-						</div>
-					</div>
-					<div class="col-md-4 col-sm-4 col-xs-12">
-						<div class="header-top-right text-right">
-							<ul>
-								@if (!User.Identity.IsAuthenticated)
-								{
-									<li><a asp-controller="Auth" asp-action="LogIn">log in</a></li>
-									<li><a asp-controller="Account" asp-action="Register">register</a></li>
-								}
-								else
-								{
-									<li><a style="cursor:default" asp-controller="Account" asp-action="AccountDetail">@User.Identity.Name</a></li>
-									<li><a style="cursor:default" asp-controller="Auth" asp-action="LogOut">Log Out</a></li>
-								}
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="header-area two header-sticky">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-3 col-sm-3 col-xs-6">
-						<div class="logo">
-							<a asp-controller="Home" asp-action="Index"><img src="~/assets/img/logo/logo2.png" alt="eduhome" /></a>
-						</div>
-					</div>
-					<div class="col-md-9 col-sm-9 col-xs-6">
-						<div class="content-wrapper text-right">
-							<!-- Main Menu Start -->
-							<div class="main-menu">
-								<nav>
-									<ul>
-										<li><a asp-controller="Home" asp-action="Index">Home</a></li>
-										<li><a href="~/assets/about.html">About</a></li>
-										<li><a asp-controller="Courses" asp-action="Index">Courses</a></li>
-										<li><a asp-controller="Event" asp-action="Index">Event</a></li>
-										<li class="hidden-sm"><a asp-controller="Teacher" asp-action="Index">Teacher</a></li>
-										<li><a asp-controller="Blog" asp-action="Index">Blog</a></li>
-										<li><a href="~/assets/contact.html">Contact</a></li>
-										<li><a href="~/assets/#">Buy Now</a>
-									</ul>
-								</nav>
-							</div>
-							<!--Search Form Start-->
-							<div class="search-btn">
-								<ul data-toggle="dropdown" class="header-search search-toggle">
-									<li class="search-menu">
-										<i class="fa fa-search"></i>
-									</li>
-								</ul>
-								<div class="search">
-									<div class="search-form">
-										<form id="search-form" action="#">
-											<input type="search" placeholder="Search here..." name="search" />
-											<button type="submit">
-												<span><i class="fa fa-search"></i></span>
-											</button>
-										</form>
-									</div>
-								</div>
-							</div>
-							<!--End of Search Form-->
-							<!-- Main Menu End -->
-						</div>
-					</div>
-					<div class="col-xs-12">
-						<div class="mobile-menu hidden-lg hidden-md hidden-sm"></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</header>
+	@await Component.InvokeAsync("Header")
 	<!-- Header Area End -->
 	@RenderBody()
+	<!-- Subscribe Start -->
+	@await Component.InvokeAsync("Subscribe")
+	<!-- Subscribe End -->
 	<!-- Footer Start -->
-	<footer class="footer-area">
-		<div class="main-footer">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-4 col-sm-6 col-xs-12">
-						<div class="single-widget pr-60">
-							<div class="footer-logo pb-25">
-								<a href="~/assets/index.html"><img src="~/assets/img/logo/footer-logo.png" alt="eduhome"></a>
-							</div>
-							<p>I must explain to you how all this mistaken idea of denoung pleure and praising pain was born and give you a coete account of the system. </p>
-							<div class="footer-social">
-								<ul>
-									<li><a href="~/assets/#"><i class="zmdi zmdi-facebook"></i></a></li>
-									<li><a href="~/assets/#"><i class="zmdi zmdi-pinterest"></i></a></li>
-									<li><a href="~/assets/#"><i class="zmdi zmdi-vimeo"></i></a></li>
-									<li><a href="~/assets/#"><i class="zmdi zmdi-twitter"></i></a></li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-6 col-xs-12">
-						<div class="single-widget">
-							<h3>information</h3>
-							<ul>
-								<li><a href="~/assets/#">addmission</a></li>
-								<li><a href="~/assets/#">Academic Calender</a></li>
-								<li><a href="~/assets/event.html">Event List</a></li>
-								<li><a href="~/assets/#">Hostel &amp; Dinning</a></li>
-								<li><a href="~/assets/#">TimeTable</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-2 col-sm-6 col-xs-12">
-						<div class="single-widget">
-							<h3>useful links</h3>
-							<ul>
-								<li><a href="~/assets/course.html">our courses</a></li>
-								<li><a href="~/assets/about.html">about us</a></li>
-								<li><a href="~/assets/teacher.html">teachers &amp; faculty</a></li>
-								<li><a href="~/assets/#">teams &amp; conditions</a></li>
-								<li><a href="~/assets/event.html">our events</a></li>
-							</ul>
-						</div>
-					</div>
-					<div class="col-md-3 col-sm-6 col-xs-12">
-						<div class="single-widget">
-							<h3>get in touch</h3>
-							<p>Your address goes here, Street<br>City, Roadno 785 New York</p>
-							<p>+880  548  986  898  87<br>+880  659  785  658  98</p>
-							<p>info@eduhome.com<br>www.eduhome.com</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="footer-bottom text-center">
-			<div class="container">
-				<div class="row">
-					<div class="col-xs-12">
-						<p>Copyright © <a href="~/assets/#" target="_blank">HasTech</a> 2017. All Right Reserved By Hastech.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+	@await Component.InvokeAsync("Footer")
 	<!-- Footer End -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="~/assets/js/vendor/jquery-1.12.0.min.js"></script>

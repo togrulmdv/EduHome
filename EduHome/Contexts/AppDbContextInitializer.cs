@@ -20,23 +20,24 @@ public class AppDbContextInitializer
 
 	public async Task InitializeAsync()
 	{
-		//if (_context.Database.IsSqlServer())
-		//{
+		if (_context.Database.IsSqlServer())
+		{
 			await _context.Database.MigrateAsync();
-		//}
+		}
 	}
 
 	public async Task UserSeedAsync()
 	{
-		foreach(var role in Enum.GetValues(typeof(Roles)))
+		foreach (var role in Enum.GetValues(typeof(Roles)))
 		{
-			await _roleManager.CreateAsync(new IdentityRole { Name= role.ToString() });
+			await _roleManager.CreateAsync(new IdentityRole { Name = role.ToString() });
 		}
 
 		AppUser admin = new AppUser
 		{
 			Name = "Admin",
 			Surname = "Admin",
+			UserName = "GOD",
 			Email = "toghrulzm@code.edu.az",
 			IsActive = true,
 			EmailConfirmed = true

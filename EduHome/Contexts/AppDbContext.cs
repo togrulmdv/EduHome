@@ -17,12 +17,31 @@ public class AppDbContext : IdentityDbContext<AppUser>
 
 	public DbSet<Slider> Sliders { get; set; } = null!;
 	public DbSet<Subscribe> Subscribes { get; set; } = null!;
-	//public DbSet<Category> Categories { get; set; }
+	public DbSet<Category> Categories { get; set; } = null!;
+	public DbSet<Course> Courses { get; set; } = null!;
+	public DbSet<CourseCategory> CourseCategories { get; set; } = null!;
+	public DbSet<Speaker> Speakers { get; set; } = null!;
+	public DbSet<Event> Events { get; set; } = null!;
+	public DbSet<EventSpeaker> EventSpeakers { get; set; } = null!;
+	public DbSet<Blog> Blogs { get; set; } = null!;
+	public DbSet<Teacher> Teachers { get; set; } = null!;
+	public DbSet<Skill> Skills { get; set; } = null!;
+	public DbSet<TeacherSkill> TeacherSkills { get; set; } = null!;
+	public DbSet<SocialMedia> SocialMedias { get; set; } = null!;
+	public DbSet<Setting> Settings { get; set; } = null!;
 
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
 		modelBuilder.Entity<Slider>().HasQueryFilter(sldr => !sldr.IsDeleted);
-		modelBuilder.Entity<Subscribe>().HasQueryFilter(sbscrb => !sbscrb.IsDeleted);
+		//modelBuilder.Entity<Subscribe>().HasQueryFilter(sbscrb => !sbscrb.IsDeleted);
+		modelBuilder.Entity<Course>().HasQueryFilter(crs => !crs.IsDeleted);
+		modelBuilder.Entity<Category>().HasQueryFilter(ctgry => !ctgry.IsDeleted);
+		modelBuilder.Entity<Event>().HasQueryFilter(evnt => !evnt.IsDeleted);
+		modelBuilder.Entity<Speaker>().HasQueryFilter(spkr => !spkr.IsDeleted);
+		modelBuilder.Entity<Blog>().HasQueryFilter(blg => !blg.IsDeleted);
+		modelBuilder.Entity<Teacher>().HasQueryFilter(tchr => !tchr.IsDeleted);
+		modelBuilder.Entity<Skill>().HasQueryFilter(skl => !skl.IsDeleted);
+		modelBuilder.Entity<SocialMedia>().HasQueryFilter(scl => !scl.IsDeleted);
 		base.OnModelCreating(modelBuilder);
 	}
 

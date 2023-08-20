@@ -20,10 +20,4 @@
     <PackageReference Include="MimeKit" Version="4.1.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Areas\Admin\ViewModels\" />
-    <Folder Include="Areas\Admin\Views\" />
-    <Folder Include="wwwroot\adminAssets\" />
-  </ItemGroup>
-
 </Project>

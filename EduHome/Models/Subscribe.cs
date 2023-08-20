@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EduHome.Models;
 
-public class Subscribe : BaseEntityAdditional
+public class Subscribe : BaseEntity
 {
 	[Required, DataType(DataType.EmailAddress)]
 	public string Email { get; set; }

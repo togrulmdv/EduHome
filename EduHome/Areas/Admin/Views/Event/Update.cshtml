@@ -1,0 +1,63 @@
+﻿@using EduHome.Areas.Admin.ViewModels.EventViewModels;
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+@model UpdateEventViewModel
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Update Event</h4>
+
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="exampleInputUsername1">Image</label>
+                    <input asp-for="Image" class="form-control" placeholder="Image">
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Name</label>
+                    <input asp-for="Name" class="form-control" placeholder="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Description</label>
+                    <input asp-for="Description" class="form-control" placeholder="Description">
+                    <span asp-validation-for="Description" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Date</label>
+                    <input asp-for="Date" class="form-control" placeholder="Date">
+                    <span asp-validation-for="Date" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Time</label>
+                    <input asp-for="Time" class="form-control" placeholder="Time">
+                    <span asp-validation-for="Time" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Venue</label>
+                    <input asp-for="Venue" class="form-control" placeholder="Venue">
+                    <span asp-validation-for="Venue" class="text-danger"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Speaker</label>
+                    <select asp-for="SpeakerId" asp-items="ViewBag.Speakers" multiple="multiple">Select Speaker</select>
+                </div>
+
+
+
+                <button type="submit" asp-action="Update" class="btn btn-primary mr-2">Submit</button>
+
+            </form>
+        </div>
+    </div>
+</div>

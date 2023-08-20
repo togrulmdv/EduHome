@@ -1,0 +1,38 @@
+﻿@{
+	Layout = null;
+}
+
+<div class="subscribe-area pt-60 pb-70">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 col-md-offset-2">
+				<div class="subscribe-content section-title text-center">
+					<h2>subscribe our newsletter</h2>
+					<p>I must explain to you how all this mistaken idea </p>
+					@if (User.Identity.IsAuthenticated)
+					{
+						<form asp-controller="Home" asp-action="Subscribe" method="post" enctype="multipart/form-data">
+							<div id="mc_embed_signup_scroll" class="mc-form">
+								<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+								<button id="mc-embedded-subscribe" class="default-btn" type="submit" name="subscribe" @*asp-controller="Home" asp-action="Subscribe"*@><span>subscribe</span></button>
+							</div>
+						</form>
+					}
+				</div>
+				<div class="newsletter-form mc_embed_signup">
+					@if (!User.Identity.IsAuthenticated)
+					{
+						<form method="post" id="mc-embedded-subscribe-form" class="validate" novalidate>
+							<div id="mc_embed_signup_scroll" class="mc-form">
+								<input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="Enter your e-mail address" required>
+
+								<div class="mc-news" aria-hidden="true"><input type="text" name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef" tabindex="-1" value=""></div>
+								<button id="mc-embedded-subscribe" class="default-btn" asp-action="Subscribe" asp-controller="Home" type="submit"><span>subscribe</span></button>
+							</div>
+						</form>
+					}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

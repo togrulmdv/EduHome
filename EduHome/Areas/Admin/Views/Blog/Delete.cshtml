@@ -1,0 +1,26 @@
+﻿@using EduHome.Areas.Admin.ViewModels.BlogViewModels;
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+@model DeleteBlogViewModel
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+
+        <div class="card-body" style="font-size:20px">
+
+            <a class="btn btn-primary" asp-action="index">GO BACK</a>
+
+            <img src="~/assets/img/blog//@Model.ImageName" style="width:25%" />
+            <h1>Title:@Model.Name</h1>
+            <h1>Description:@Model.Description</h1>
+
+
+            <form method="post">
+                <button type="submit" class="btn btn-primary">Delete Blog</button>
+
+            </form>
+        </div>
+    </div>
+</div>

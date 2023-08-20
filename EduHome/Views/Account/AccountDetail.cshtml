@@ -5,21 +5,7 @@
 @model AppUser
 
 <!-- Banner Area Start -->
-<div class="banner-area-wrapper">
-	<div class="banner-area text-center">
-		<div class="container">
-			<div class="row">
-				<div class="col-xs-12">
-					<div class="banner-content-wrapper">
-						<div class="banner-content">
-							<h2>account details</h2>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
+@await Component.InvokeAsync("Banner")
 <!-- Banner Area End -->
 <div class="container mt-5">
 	<h1 class="mb-4">Your Account Details</h1>
@@ -34,16 +20,17 @@
 			{
 				<p class="card-text"><strong>Two Factor Authentication:</strong> Two-Factor Authentication is enabled for this account.</p>
 				<form asp-controller="Account" asp-action="ToggleTwoFactorAuthentication" method="post">
-					<button type="submit" class="btn btn-danger">Disable Two-Factor Authentication</button>
+					<button type="submit" class="btn btn-danger" style="margin-top:15px">Disable Two-Factor Authentication</button>
 				</form>
 			}
 			else
 			{
 				<p class="card-text"><strong>Two Factor Authentication:</strong> Two-Factor Authentication is disabled for this account.</p>
 				<form asp-controller="Account" asp-action="ToggleTwoFactorAuthentication" method="post">
-					<button type="submit" class="btn btn-success">Enable Two-Factor Authentication</button>
+					<button type="submit" class="btn btn-success" style="margin-top:15px">Enable Two-Factor Authentication</button>
 				</form>
 			}
+			<a id="mc-embedded-subscribe" class="default-btn" asp-action="LogOut" asp-controller="Auth" style="margin-top:15px"><span>Log Out</span></a>
 		</div>
 	</div>
 </div>
