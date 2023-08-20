@@ -1,6 +1,7 @@
-﻿namespace EduHome.Areas.Admin.ViewModels.UserViewModels
+﻿namespace EduHome.Areas.Admin.ViewModels.UserViewModels;
+
+public class StatusUserViewModel
 {
-	public class StatusUserViewModel
-	{
-	}
+    public string Id { get; set; }
+    public bool IsActive { get; set; }
 }

@@ -1,0 +1,26 @@
+﻿@using EduHome.Areas.Admin.ViewModels.TeacherViewModels;
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+@model DeleteTeacherViewModel
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+
+        <div class="card-body" style="font-size:20px">
+
+            <a class="btn btn-primary" asp-action="index">GO BACK</a>
+
+            <img src="~/assets/img/teacher//@Model.ImageName" style="width:25%" />
+            <h1>Name:@Model.Name</h1>
+            <h1 style="font-size:15px">Description:@Model.Description</h1>
+            <form method="post">
+                <button class="btn btn-danger" type="submit">Delete Teacher</button>
+
+            </form>
+
+        </div>
+    </div>
+</div>

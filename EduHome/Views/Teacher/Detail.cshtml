@@ -39,11 +39,11 @@
 					<p><span>make a call : </span>@Model.PhoneNumber</p>
 					<p><span>skype : </span> @Model.Skype</p>
 					<ul>
-						@foreach(var socialMedias in Model.SocialMedias)
+						@foreach (var socialMedias in Model.SocialMedias)
 						{
-						<li><a href="@socialMedias.URL"><i class="zmdi zmdi-@socialMedias.IconName"></i></a></li>	
+							<li><a href="@socialMedias.URL"><i class="zmdi zmdi-@socialMedias.IconName"></i></a></li>
 						}
-						
+
 					</ul>
 				</div>
 			</div>
@@ -53,14 +53,13 @@
 				</div>
 				<div class="skill-wrapper">
 					<div class="row">
-						@for (int i = 0; i < Model.SkillNames.Count; i++)
+						@foreach (var skills in Model.TeacherSkills)
 						{
 							<div class="col-sm-4">
 								<div class="skill-bar-item">
-									<span>@Model.SkillNames[i]</span>
+									<span>@skills.SkillName - @skills.Percentage%</span>
 									<div class="progress">
-										<div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: 85%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;" data-progress="50%" class="progress-bar wow fadeInLeft">
-											<span class="text-top">@Model.Percentage[i] %</span>
+										<div data-wow-delay="1.2s" data-wow-duration="1.5s" style="width: @skills.Percentage%; visibility: visible; animation-duration: 1.5s; animation-delay: 1.2s; animation-name: fadeInLeft;" data-progress="50%" class="progress-bar wow fadeInLeft">
 										</div>
 									</div>
 								</div>

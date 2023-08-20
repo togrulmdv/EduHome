@@ -1,4 +1,5 @@
 ﻿@using EduHome.ViewModels.HomeViewModels;
+@using System.Globalization;
 @{
 	ViewData["Title"] = "Home";
 }
@@ -20,7 +21,7 @@
 									<div class="slide-content text-center">
 										<h2>@sliders.Title </h2>
 										<p>@sliders.Description  </p>
-										<a class="default-btn" href="~/assets/about.html">Learn more</a>
+										<a class="default-btn" asp-controller="About">Learn more</a>
 									</div>
 								</div>
 							</div>
@@ -69,7 +70,7 @@
 					<h2>WELCOME TO <span>EDUHOME</span></h2>
 					<p>I must explain to you how all this mistaken idea of denouncing pleure and prsing pain was born and I will give you a complete account of the system, and expound the actual teachings  the master-builder of humanit happiness</p>
 					<p class="hidden-sm">I must explain to you how all this mistaken idea of denouncing pleure and prsing pain was born and I will give you a complete account of the system</p>
-					<a class="default-btn" href="~/assets/about.html">view courses</a>
+					<a class="default-btn" asp-controller="Courses">view courses</a>
 				</div>
 			</div>
 			<div class="col-md-6 col-sm-6">
@@ -106,9 +107,9 @@
 							</a>
 						</div>
 						<div class="course-content">
-							<h3><a asp-action="Detail" asp-controller="Course">@courses.Name</a></h3>
+							<h3><a asp-action="Detail" asp-controller="Courses" asp-route-id="@courses.Id">@courses.Name</a></h3>
 							<p>@courses.ShortDescription</p>
-							<a class="default-btn" asp-action="Detail" asp-controller="Course">read more</a>
+							<a class="default-btn"  asp-controller="Courses" asp-action="Detail" asp-route-id="@courses.Id">read more</a>
 						</div>
 					</div>
 				</div>
@@ -184,17 +185,17 @@
 				{
 					<div class="single-event mb-35">
 						<div class="event-img">
-							<a asp-action="Detail" asp-controller="Event"><img src="~/assets/img/event/@events.ImageName" alt="event"></a>
+						<a asp-action="Detail" asp-controller="Event" asp-route-id="@events.Id"><img src="~/assets/img/event/@events.ImageName" alt="event"></a>
 						</div>
 						<div class="event-content text-left">
-							<h3>@events.Date</h3>
-							<h4><a asp-action="Detail" asp-controller="Event">@events.Name</a></h4>
+						<h3>@events.Date.Day @CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(events.Date.Month)</h3>
+						<h4><a asp-action="Detail" asp-controller="Event" asp-route-id="@events.Id">@events.Name</a></h4>
 							<ul>
 								<li><i class="fa fa-clock-o"></i>@events.Time</li>
 								<li><i class="fa fa-map-marker"></i>@events.Venue</li>
 							</ul>
 							<div class="event-content-right">
-								<a class="default-btn" asp-action="Detail" asp-controller="Event">join now</a>
+							<a class="default-btn" asp-action="Detail" asp-controller="Event" asp-route-id="@events.Id">join now</a>
 							</div>
 						</div>
 					</div>
@@ -244,18 +245,18 @@
 				<div class="col-md-4 col-sm-6 col-xs-12">
 					<div class="single-blog">
 						<div class="blog-img">
-							<a asp-action="Detail" asp-controller="Blog"><img src="~/assets/img/blog/@blogs.ImageName" alt="blog"></a>
+							<a asp-action="Detail" asp-controller="Blog" asp-route-id="@blogs.Id"><img src="~/assets/img/blog/@blogs.ImageName" alt="blog"></a>
 							<div class="blog-hover">
-								<a asp-action="Detail" asp-controller="Blog"><i class="fa fa-link"></i></a>
+								<a asp-action="Detail" asp-controller="Blog" asp-route-id="@blogs.Id"><i class="fa fa-link"></i></a>
 							</div>
 						</div>
 						<div class="blog-content">
 							<div class="blog-top">
-								<p>By @blogs.CreatedBy  /  @blogs.Date  /  <i class="fa fa-comments-o"></i> @blogs.CommentCount</p>
+								<p>By @blogs.CreatedBy  /  @blogs.Date.Day   @CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(blogs.Date.Month), @blogs.Date.Year  /  <i class="fa fa-comments-o"></i> @blogs.CommentCount</p>
 							</div>
 							<div class="blog-bottom">
-								<h2><a asp-action="Detail" asp-controller="Blog">@blogs.Name </a></h2>
-								<a asp-action="Detail" asp-controller="Blog">read more</a>
+								<h2><a asp-action="Detail" asp-controller="Blog" asp-route-id="@blogs.Id">@blogs.Name </a></h2>
+								<a asp-action="Detail" asp-controller="Blog" asp-route-id="@blogs.Id">read more</a>
 							</div>
 						</div>
 					</div>

@@ -30,7 +30,7 @@ public class EventController : Controller
 
 	public async Task<IActionResult> Detail(int id)
 	{
-		Event? events = await _context.Events.FirstOrDefaultAsync(crs => crs.Id == id);
+		Event? events = await _context.Events.Include(e => e.EventSpeakers).ThenInclude(e => e.Speaker).FirstOrDefaultAsync(crs => crs.Id == id);
 		
 		if (events is null)
 		{

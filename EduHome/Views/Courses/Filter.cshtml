@@ -1,0 +1,48 @@
+﻿@using EduHome.ViewModels.CourseViewModels;
+
+@{
+    ViewData["Title"] = "Filter";
+}
+@model IEnumerable<CourseFilterViewModel>
+
+<!-- Course Start -->
+<div class="course-area pt-150 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="course-title">
+                    <h3>search courses</h3>
+                </div>
+                <div class="course-form">
+                    <form id="search" action="#">
+                        <input type="search" placeholder="Search..." name="search" />
+                        <button type="submit">search</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var courses in Model)
+            {
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="single-course mb-70">
+                        <div class="course-img">
+                            <a asp-action="Detail" asp-controller="Courses" asp-route-id="@courses.Id">
+                                <img src="~/assets/img/course/@courses.ImageName" alt="course">
+                                <div class="course-hover">
+                                    <i class="fa fa-link"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="course-content">
+                            <h3><a asp-action="Detail" asp-controller="Courses" asp-route-id="@courses.Id">@courses.Name</a></h3>
+                            <p>@courses.ShortDescription</p>
+                            <a class="default-btn" asp-action="Detail" asp-controller="Courses" asp-route-id="@courses.Id">read more</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- Course End -->

@@ -17,6 +17,5 @@ public class TeacherDetailViewModel
 	public string PhoneNumber { get; set; }
 	public string Skype { get; set; }
 	public List<SocialMedia> SocialMedias { get; set; }
-	public List<string> SkillNames { get; set; }
-	public List<float> Percentage { get; set; }
+	public List<TeacherSkillViewModel> TeacherSkills { get; set; }
 }

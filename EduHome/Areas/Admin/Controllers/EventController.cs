@@ -95,23 +95,20 @@ public class EventController : Controller
 
         newEvent.ImageName = FileName;
 
-
-        if (createEventViewModel.SpeakerId is not null)
+        List<EventSpeaker> speakers = new List<EventSpeaker>();
+        for (int i = 0; i < createEventViewModel.SpeakerId.Count(); i++)
         {
-            List<EventSpeaker> speakers = new List<EventSpeaker>();
-            for (int i = 0; i < createEventViewModel.SpeakerId.Count(); i++)
+            EventSpeaker eventSpeaker = new EventSpeaker()
             {
-                EventSpeaker eventSpeaker = new EventSpeaker()
-                {
 
-                    SpeakerId = createEventViewModel.SpeakerId[i],
-                    EventId = newEvent.Id,
-                };
+                SpeakerId = createEventViewModel.SpeakerId[i],
+                EventId = newEvent.Id,
+            };
 
-                speakers.Add(eventSpeaker);
-            }
-            newEvent.EventSpeakers = speakers;
+            speakers.Add(eventSpeaker);
         }
+        newEvent.EventSpeakers = speakers;
+
 
         await _context.Events.AddAsync(newEvent);
 
@@ -138,7 +135,7 @@ public class EventController : Controller
     }
     private async Task<string> GetEmailTemplate(string link)
     {
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "assets", "Templates", "confirm-email.html");
+        string path = Path.Combine(_webHostEnvironment.WebRootPath, "assets", "Templates", "verifyemail.html");
         using StreamReader streamReader = new StreamReader(path);
         string result = await streamReader.ReadToEndAsync();
         return result.Replace("[link]", link);

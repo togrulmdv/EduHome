@@ -1,6 +1,5 @@
-﻿namespace EduHome.Areas.Admin.ViewModels.EventViewModels
+﻿namespace EduHome.Areas.Admin.ViewModels.EventViewModels;
+
+public class DeleteEventViewModel
 {
-	public class DeleteEventViewModel
-	{
-	}
 }

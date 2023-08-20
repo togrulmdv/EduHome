@@ -37,7 +37,7 @@ public class AppDbContextInitializer
 		{
 			Name = "Admin",
 			Surname = "Admin",
-			UserName = "GOD",
+			UserName = "ADMIN",
 			Email = "toghrulzm@code.edu.az",
 			IsActive = true,
 			EmailConfirmed = true

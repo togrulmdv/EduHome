@@ -12,10 +12,9 @@ public class SliderMapperProfile : Profile
     {
         CreateMap<Slider, SliderViewModel>().ReverseMap();
         CreateMap<Slider, DetailSliderViewModel>().ReverseMap();
-        CreateMap<CreateSliderViewModel, Slider>()/*.ForMember(s => s.ImageName, x => x.Ignore())*/.ReverseMap();
+        CreateMap<CreateSliderViewModel, Slider>().ForMember(s => s.ImageName, x => x.Ignore()).ReverseMap();
         CreateMap<Slider, DeleteSliderViewModel>().ReverseMap();
-        CreateMap<Slider, UpdateSliderViewModel>()/*.ForMember(up => up.Image, x => x.Ignore())*/.ReverseMap();
+        CreateMap<Slider, UpdateSliderViewModel>().ForMember(up => up.Image, x => x.Ignore()).ReverseMap();
 		CreateMap<Slider, SliderCardViewModel>().ReverseMap();
-
 	}
 }

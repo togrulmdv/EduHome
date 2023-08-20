@@ -1,0 +1,33 @@
+﻿@using EduHome.Areas.Admin.ViewModels.SocialMediaViewModels;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@model DetailSocialMediaViewModel
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+
+        <div class="card-body" style="font-size:20px">
+
+            <a class="btn btn-primary" asp-action="index">GO BACK</a>
+
+
+            <h1>Name:@Model.URL</h1>
+            <td><i class="@Model.IconName"></i></td>
+
+            <h1>Teacher:@Model.TeacherName</h1>
+
+            <h1>CreatedBy:@Model.CreatedBy</h1>
+            <h1>CreatedTime:@Model.CreatedDate</h1>
+            <h1>UpdatedBy:@Model.UpdatedBy</h1>
+            <h1>UpdatedTime:@Model.UpdatedDate</h1>
+
+
+
+        </div>
+    </div>
+</div>
+
+

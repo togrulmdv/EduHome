@@ -1,10 +1,9 @@
-﻿@using EduHome.Areas.Admin.ViewModels.SliderViewModels;
+﻿@using EduHome.Areas.Admin.ViewModels.BlogViewModels;
 
 @{
     ViewData["Title"] = "Detail";
 }
-@model DetailSliderViewModel
-
+@model DetailBlogViewModel
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
 
@@ -12,13 +11,17 @@
 
             <a class="btn btn-primary" asp-action="index">GO BACK</a>
 
-            <img src="~/assets/img/slider//@Model.ImageName" style="width:25%" />
-            <h1>Title:@Model.Title</h1>
-            <h1>Description:@Model.Description</h1>
+            <img src="~/assets/img/Blog//@Model.ImageName" style="width:25%" />
+            <h1>Name:@Model.Name</h1>
+            <h1 style="font-size:15px">Description:@Model.Description</h1>
             <h1>CreatedBy:@Model.CreatedBy</h1>
             <h1>CreatedTime:@Model.CreatedDate</h1>
             <h1>UpdatedBy:@Model.UpdatedBy</h1>
             <h1>UpdatedTime:@Model.UpdatedDate</h1>
+
+
+
         </div>
     </div>
 </div>
+

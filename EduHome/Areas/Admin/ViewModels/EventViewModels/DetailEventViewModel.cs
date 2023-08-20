@@ -7,7 +7,7 @@
         public string ImageName { get; set; }
         public string Time { get; set; }
         public string Venue { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }

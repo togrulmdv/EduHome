@@ -35,7 +35,7 @@
 
                                         <td><img src="~/assets/img/Event//@Event.ImageName" /></td>
                                         <td>@Event.Name</td>
-                                        <td>@Event.Description</td>
+                                        <td>@Html.Raw(Event.Description)</td>
 
                                         <td><a class="btn btn-primary" asp-action="Details" asp-route-id="@Event.Id">Detail</a></td>
                                         <td><a class="btn btn-warning" asp-action="Update" asp-route-id="@Event.Id">Update</a></td>
@@ -57,4 +57,4 @@
 
     </div>
 </div>
-
+<!-- content-wrapper ends -->

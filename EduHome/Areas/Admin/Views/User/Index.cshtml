@@ -1,6 +1,71 @@
-﻿@{
+﻿@using EduHome.Areas.Admin.ViewModels.UserViewModels;
+@{
     ViewData["Title"] = "User";
 }
 
-<h2>Index</h2>
+@model IEnumerable<UserViewModel>
+<div class="content-wrapper">
+    <div class="row">
+        <div class="col-lg-12 grid-margin stretch-card">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Users</h4>
 
+                    <div class="table-responsive">
+
+                        <a class="btn btn-primary" asp-action="create">Create</a>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>UserName</th>
+                                    <th>Fullname</th>
+                                    <th>Email</th>
+                                    <th>Is Active</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (UserViewModel user in Model)
+                                {
+                                    <tr>
+
+                                        <td>User name:@user.UserName</td>
+                                        <td>Full name:@user.Name</td>
+                                        <td>Full name:@user.Surname</td>
+                                        <td>Email:@user.Email</td>
+                                        <td>Is Active:@(user.IsActive ? "Yes" : "No") </td>
+
+
+                                        <td><a class="btn btn-primary" asp-action="Detail" asp-route-id="@user.Id">Detail</a></td>
+                                        <td><a class="btn btn-success" asp-action="Update" asp-route-id="@user.Id">Update</a></td>
+
+                                        <td><a class="btn btn-warning" asp-action="ChangeRole" asp-route-id="@user.Id">Change Role</a></td>
+                                        @if (user.IsActive)
+                                        {
+
+                                            <td><a class="btn btn-danger" asp-action="ChangeStatus" asp-route-id="@user.Id">Deactivate</a></td>
+
+                                        }
+                                        else
+                                        {
+
+                                            <td><a class="btn btn-success" asp-action="ChangeStatus" asp-route-id="@user.Id">Activate</a></td>
+
+                                        }
+
+
+
+                                    </tr>
+                                }
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<!-- content-wrapper ends -->

@@ -1,0 +1,33 @@
+﻿@using EduHome.Areas.Admin.ViewModels.UserViewModels;
+
+@{
+    ViewData["Title"] = "ChangeStatus";
+}
+
+@model StatusUserViewModel
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Change Status</h4>
+
+
+
+            <h1>Is Active: @(Model.IsActive ? "Yes" : "No")  </h1>
+
+            @if (Model.IsActive)
+            {
+                <form method="post">
+                    <button type="submit" asp-action="ChangeStatus" class="btn btn-danger mr-2">Deactivate</button>
+                </form>
+            }
+            else
+            {
+                <form method="post">
+
+                    <button type="submit" asp-action="ChangeStatus" class="btn btn-primary mr-2">Activate</button>
+                </form>
+            }
+
+        </div>
+    </div>
+</div>

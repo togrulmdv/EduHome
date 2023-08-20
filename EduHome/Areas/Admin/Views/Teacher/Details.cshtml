@@ -1,0 +1,64 @@
+﻿@using EduHome.Areas.Admin.ViewModels.TeacherViewModels;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+@model DetailTeacherViewModel
+
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+
+        <div class="card-body" style="font-size:20px">
+
+            <a class="btn btn-primary" asp-action="index">GO BACK</a>
+
+            <img src="~/assets/img/teacher//@Model.ImageName" style="width:25%" />
+            <h1>Name:@Model.Name</h1>
+            <h1 style="font-size:15px">Faculty:@Model.Faculty</h1>
+            <h1 style="font-size:15px">Rank:@Model.Role</h1>
+            <h1 style="font-size:15px">Mail:@Model.Email</h1>
+            <h1 style="font-size:15px">Skype:@Model.Skype</h1>
+            <h1 style="font-size:15px">CreatedBy:@Model.CreatedBy</h1>
+            <h1 style="font-size:15px">CreatedDate:@Model.CreatedDate</h1>
+            <h1 style="font-size:15px">UpdatedBy:@Model.UpdatedBy</h1>
+            <h1 style="font-size:15px">UpdatedDate:@Model.UpdatedDate</h1>
+            <h1 style="font-size:15px">Degree:@Model.Degree</h1>
+            <h1 style="font-size:15px">Experience:@Model.Experience</h1>
+
+            <div class="col-md-3 col-sm-4">
+                <div class="teacher-contact">
+                    <h4>contact information</h4>
+
+                    <ul>
+                        @foreach (var socialMedia in Model.SocialMedia)
+                        {
+
+                            <li><a href="@socialMedia.URL">@Html.Raw(socialMedia.IconName)</a></li>
+
+
+                        }
+                    </ul>
+                </div>
+            </div>
+
+
+
+           @*  @for (int i = 0; i < Model.SkillName.Count(); i++)
+            {
+                <h1>Skill:@Model.SkillName[i] :@Model.Percent[i]  </h1>
+
+            }
+
+            @foreach (var skill in Model.SkillName)
+            {
+            } *@
+
+
+
+
+        </div>
+    </div>
+</div>
+
+<script src="https://kit.fontawesome.com/8f2bd1d04c.js" crossorigin="anonymous"></script>

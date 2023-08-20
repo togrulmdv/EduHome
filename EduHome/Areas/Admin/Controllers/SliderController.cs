@@ -13,8 +13,7 @@ using Microsoft.EntityFrameworkCore;
 namespace EduHome.Areas.Admin.Controllers;
 
 [Area("Admin")]
-[Authorize(Roles = "Admin, Moderator")]
-
+[Authorize(Roles = "Admin,Moderator")]
 public class SliderController : Controller
 {
     private readonly AppDbContext _context;
@@ -209,5 +208,15 @@ public class SliderController : Controller
         await _context.SaveChangesAsync();
 
         return RedirectToAction(nameof(Index));
+
+
+
+
+
+
+
+
+
     }
+
 }

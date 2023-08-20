@@ -1,0 +1,29 @@
+﻿@using EduHome.Areas.Admin.ViewModels.SkillViewModels;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@model CreateSkillViewModel
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Create Skill</h4>
+
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+
+
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Name</label>
+                    <input asp-for="Name" class="form-control" placeholder="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
+                </div>
+
+                <button type="submit" asp-action="Create" class="btn btn-primary mr-2">Submit</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+

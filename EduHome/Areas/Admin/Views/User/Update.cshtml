@@ -1,0 +1,47 @@
+﻿@using EduHome.Areas.Admin.ViewModels.UserViewModels;
+
+@{
+    ViewData["Title"] = "Update";
+}
+
+@model UpdateUserViewModel
+
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Update User</h4>
+
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+
+
+                <div class="form-group">
+                    <label for="exampleInputPassword1">UserName</label>
+                    <input asp-for="UserName" class="form-control" placeholder="UserName">
+                    <span asp-validation-for="UserName" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Name</label>
+                    <input asp-for="Name" class="form-control" placeholder="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Surname</label>
+                    <input asp-for="Surname" class="form-control" placeholder="Surname">
+                    <span asp-validation-for="Surname" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Email</label>
+                    <input asp-for="Email" class="form-control" placeholder="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+                </div>
+                <button type="submit" asp-action="Update" class="btn btn-primary mr-2">Submit</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+

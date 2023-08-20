@@ -24,15 +24,21 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputConfirmPassword1">Description</label>
-                    <input asp-for="Description" class="form-control" placeholder="Description">
-                    <span asp-validation-for="Description" class="text-danger"></span>
+                    <label for="exampleInputConfirmPassword1">ShortDescription</label>
+                    <textarea id="editor" asp-for="ShortDescription" class="form-control" placeholder="ShortDescription"></textarea>
+                    <span asp-validation-for="ShortDescription" class="text-danger"></span>
 
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputConfirmPassword1">Start</label>
-                    <input asp-for="Start" class="form-control" placeholder="Start">
-                    <span asp-validation-for="Start" class="text-danger"></span>
+                    <label for="exampleInputConfirmPassword1">LongDescription</label>
+                    <textarea id="editor" asp-for="LongDescription" class="form-control" placeholder="LongDescription"></textarea>
+                    <span asp-validation-for="LongDescription" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">StartDate</label>
+                    <input asp-for="StartDate" class="form-control" placeholder="StartDate">
+                    <span asp-validation-for="StartDate" class="text-danger"></span>
 
                 </div>
                 <div class="form-group">
@@ -48,9 +54,9 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputConfirmPassword1">Students</label>
-                    <input asp-for="Students" class="form-control" placeholder="Students number">
-                    <span asp-validation-for="Students" class="text-danger"></span>
+                    <label for="exampleInputConfirmPassword1">StudentCount</label>
+                    <input asp-for="StudentCount" class="form-control" placeholder="Students number">
+                    <span asp-validation-for="StudentCount" class="text-danger"></span>
 
                 </div>
                 <div class="form-group">
@@ -75,6 +81,8 @@
                 <div class="form-group">
                     <label for="exampleInputConfirmPassword1">Category</label>
                     <select asp-for="CategoryId" asp-items="ViewBag.Categories" multiple="multiple">Select Category</select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+
                 </div>
 
 
@@ -85,3 +93,16 @@
         </div>
     </div>
 </div>
+
+
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .then(editor => {
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>

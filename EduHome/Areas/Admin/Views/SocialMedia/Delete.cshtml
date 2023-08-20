@@ -1,0 +1,27 @@
+﻿@using EduHome.Areas.Admin.ViewModels.SocialMediaViewModels;
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+@model DeleteSocialMediaViewModel
+<div class="col-lg-12 grid-margin stretch-card">
+    <div class="card">
+
+        <div class="card-body" style="font-size:20px">
+
+            <a class="btn btn-primary" asp-action="index">GO BACK</a>
+
+
+            <h1>Title:@Model.URL</h1>
+            <h1>SocialMedia:<i class="@Model.IconName"></i></h1>
+
+
+            <form method="post">
+                <button type="submit" class="btn btn-primary">Delete Social Media</button>
+
+            </form>
+        </div>
+    </div>
+</div>
+

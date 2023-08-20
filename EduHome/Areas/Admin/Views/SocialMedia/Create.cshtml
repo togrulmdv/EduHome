@@ -1,0 +1,46 @@
+﻿@using EduHome.Areas.Admin.ViewModels.SocialMediaViewModels;
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@model CreateSocialMediaViewModel
+
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Create Event</h4>
+
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+
+
+                <div class="form-group">
+                    <label for="exampleInputPassword1">IconName</label>
+                    <input asp-for="IconName" class="form-control" placeholder="IconName">
+                    <span asp-validation-for="IconName" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">URL</label>
+                    <input asp-for="URL" class="form-control" placeholder="URL">
+                    <span asp-validation-for="URL" class="text-danger"></span>
+
+                </div>
+
+
+
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Teacher</label>
+                    <select asp-for="TeacherId" asp-items="ViewBag.Teachers">Select Teacher</select>
+                    <span asp-validation-for="TeacherId" class="text-danger"></span>
+
+                </div>
+
+
+
+                <button type="submit" asp-action="Create" class="btn btn-primary mr-2">Submit</button>
+
+            </form>
+        </div>
+    </div>
+</div>

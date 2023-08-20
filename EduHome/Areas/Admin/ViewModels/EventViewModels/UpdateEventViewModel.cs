@@ -7,7 +7,7 @@
         public IFormFile? Image { get; set; }
         public string Time { get; set; }
         public string Venue { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public List<int>? SpeakerId { get; set; }
     }
 }

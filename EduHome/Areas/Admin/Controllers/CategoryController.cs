@@ -12,8 +12,7 @@ using Microsoft.EntityFrameworkCore;
 namespace EduHome.Areas.Admin.Controllers;
 
 [Area("Admin")]
-[Authorize(Roles = "Admin, Moderator")]
-
+[Authorize(Roles = "Admin,Moderator")]
 public class CategoryController : Controller
 {
     private readonly AppDbContext _context;

@@ -1,4 +1,4 @@
-﻿namespace EduHome.ViewModels.SliderViewModels;
+﻿namespace EduHome.Areas.Admin.ViewModels.SliderViewModels;
 
 public class SliderViewModel
 {

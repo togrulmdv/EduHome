@@ -3,10 +3,12 @@ using EduHome.Areas.Admin.ViewModels.CourseViewModels;
 using EduHome.Contexts;
 using EduHome.Exceptions;
 using EduHome.Models;
+using EduHome.Services.Implementations;
 using EduHome.Services.Interfaces;
 using EduHome.Utils.Enums;
 //using EduHome.ViewModels.CourseViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +16,10 @@ using Microsoft.EntityFrameworkCore;
 namespace EduHome.Areas.Admin.Controllers;
 
 [Area("Admin")]
-[Authorize(Roles = "Admin, Moderator")]
-
+[Authorize(Roles = "Admin,Moderator")]
 public class CourseController : Controller
 {
+
     private readonly AppDbContext _context;
     private readonly IMapper _mapper;
     private readonly IWebHostEnvironment _webHostEnvironment;
@@ -91,22 +93,21 @@ public class CourseController : Controller
         }
 
         newCourse.ImageName = FileName;
-        if (createCourseViewModel.CategoryId is not null)
+
+        List<CourseCategory> categories = new List<CourseCategory>();
+        for (int i = 0; i < createCourseViewModel.CategoryId.Count(); i++)
         {
-            List<CourseCategory> categories = new List<CourseCategory>();
-            for (int i = 0; i < createCourseViewModel.CategoryId.Count(); i++)
+            CourseCategory courseCategory = new CourseCategory()
             {
-                CourseCategory courseCategory = new CourseCategory()
-                {
 
-                    CategoryId = createCourseViewModel.CategoryId[i],
-                    CourseId = newCourse.Id,
-                };
+                CategoryId = createCourseViewModel.CategoryId[i],
+                CourseId = newCourse.Id,
+            };
 
-                categories.Add(courseCategory);
-            }
-            newCourse.CourseCategories = categories;
+            categories.Add(courseCategory);
         }
+        newCourse.CourseCategories = categories;
+
 
         await _context.Courses.AddAsync(newCourse);
 

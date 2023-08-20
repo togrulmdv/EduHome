@@ -1,4 +1,5 @@
 ﻿@using EduHome.ViewModels.CourseViewModels;
+@using System.Globalization;
 @{
 	ViewData["Title"] = "Courses";
 }
@@ -29,7 +30,7 @@
 						<ul>
 							@foreach (var categories in Model.Categories)
 							{
-								<li><a href="~/assets/#">@categories.Name</a></li>
+								<li><a asp-action="Filter" asp-route-id="@categories.Id">@categories.Name</a></li>
 							}
 						</ul>
 					</div>
@@ -39,7 +40,7 @@
 						{
 							<div class="single-post mb-30">
 								<div class="single-post-img">
-									<a asp-action="Detail" asp-controller="Event">
+									<a asp-action="Detail" asp-controller="Blog" asp-route-id="@blogs.Id">
 										<img src="~/assets/img/post/@blogs.ImageName" alt="post">
 										<div class="blog-hover">
 											<i class="fa fa-link"></i>
@@ -47,8 +48,8 @@
 									</a>
 								</div>
 								<div class="single-post-content">
-									<h4><a asp-action="Detail" asp-controller="Event">@blogs.Name</a></h4>
-									<p>By @blogs.CreatedBy  /  @blogs.Date</p>
+									<h4><a asp-action="Detail" asp-controller="Blog" asp-route-id="@blogs.Id">@blogs.Name</a></h4>
+									<p>By @blogs.CreatedBy  /  @blogs.Date.Day   @CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(blogs.Date.Month), @blogs.Date.Year</p>
 								</div>
 							</div>
 						}						

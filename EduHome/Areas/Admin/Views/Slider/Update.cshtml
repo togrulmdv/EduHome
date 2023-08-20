@@ -23,7 +23,7 @@
                 </div>
                 <div class="form-group">
                     <label for="exampleInputConfirmPassword1">Description</label>
-                    <input asp-for="Description" class="form-control" placeholder="Description">
+                    <textarea id="editor" asp-for="Description" class="form-control" placeholder="Description"></textarea>
                     <span asp-validation-for="Description" class="text-danger"></span>
                 </div>
                 <button type="submit" asp-action="Update" class="btn btn-primary mr-2">Update</button>
@@ -31,3 +31,17 @@
         </div>
     </div>
 </div>
+
+
+
+<script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .then(editor => {
+            console.log(editor);
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>

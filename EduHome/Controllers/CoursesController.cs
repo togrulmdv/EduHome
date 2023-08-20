@@ -55,4 +55,23 @@ public class CoursesController : Controller
 
 		return View(courseDetailViewModel);
 	}
+
+	public async Task<IActionResult> Filter(int id)
+	{
+		var courseCategory = await _context.CourseCategories.Include(cc => cc.Course).ThenInclude(cc => cc.CourseCategories).Where(c => c.CategoryId == id).ToListAsync();
+		
+		if (courseCategory.Count() == 0)
+		{
+			return RedirectToAction(nameof(Error));
+		}
+		
+		var courseFilterViewModels = _mapper.Map<List<CourseFilterViewModel>>(courseCategory);
+
+		return View(courseFilterViewModels);
+	}
+
+	public async Task<IActionResult> Error()
+	{
+		return View();
+	}
 }

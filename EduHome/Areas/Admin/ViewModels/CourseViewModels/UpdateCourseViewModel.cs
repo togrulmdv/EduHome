@@ -3,14 +3,15 @@
     public class UpdateCourseViewModel
     {
         public string Name { get; set; }
-        public string Description { get; set; }
+        public string ShortDescription { get; set; }
+        public string LongDescription { get; set; }
         public IFormFile? Image { get; set; }
-        public string Start { get; set; }
+        public DateTime StartDate { get; set; }
         public string Duration { get; set; }
         public string ClassDuration { get; set; }
         public string SkillLevel { get; set; }
         public string Language { get; set; }
-        public int Students { get; set; }
+        public int StudentCount { get; set; }
         public string Assestment { get; set; }
         public List<int>? CategoryId { get; set; }
     }

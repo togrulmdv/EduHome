@@ -6,24 +6,22 @@ using EduHome.ViewModels.EventViewModels;
 
 namespace EduHome.Mappers
 {
-    public class EventMapperProfile : Profile
-    {
-        public EventMapperProfile()
-        {
-            ////CreateMap<Event, EventViewModel>().ReverseMap();
-            //CreateMap<Event, DetailEventViewModel>()
-            //    .ForMember(evc => evc.Speakers, x => x.MapFrom(e => e.EventSpeakers.Select(es => es.Speaker)))
-            //    .ReverseMap();
-            ////CreateMap<Event, EventViewModel>().ReverseMap();
-            //CreateMap<CreateEventViewModel, Event>().ReverseMap();
-            //CreateMap<Event, DetailEventViewModel>().ForMember(evc => evc.Speakers, x => x.MapFrom(e => e.EventSpeakers.Select(s => s.Speaker.Name))).ReverseMap();
-            //CreateMap<Event, UpdateEventViewModel>().ForMember(evc => evc.SpeakerId, x => x.MapFrom(e => e.EventSpeakers.Select(s => s.SpeakerId)))
-            //    .ForMember(evc => evc.Image, e => e.Ignore())
+	public class EventMapperProfile : Profile
+	{
+		public EventMapperProfile()
+		{
+            CreateMap<Event, EventViewModel>().ReverseMap();
+            CreateMap<CreateEventViewModel, Event>().ReverseMap();
+            CreateMap<Event, DetailEventViewModel>().ForMember(evc => evc.Speakers, x => x.MapFrom(e => e.EventSpeakers.Select(s => s.Speaker.Name))).ReverseMap();
+            CreateMap<Event, UpdateEventViewModel>().ForMember(evc => evc.SpeakerId, x => x.MapFrom(e => e.EventSpeakers.Select(s => s.SpeakerId)))
+                .ForMember(evc => evc.Image, e => e.Ignore())
 
-            //    .ReverseMap();
+                .ReverseMap();
 
-			CreateMap<Event, EventCardViewModel>().ReverseMap();
-            CreateMap<Event, EventDetailViewModel>().ReverseMap();
+            CreateMap<Event, EventCardViewModel>().ReverseMap();
+			CreateMap<Event, EventDetailViewModel>()
+				.ForMember(evnt => evnt.Speakers, x => x.MapFrom(e => e.EventSpeakers.Select(es => es.Speaker)))
+				.ReverseMap();
 
 		}
 	}

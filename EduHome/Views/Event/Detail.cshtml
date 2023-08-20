@@ -1,5 +1,6 @@
 ﻿@using EduHome.Models;
 @using EduHome.ViewModels.EventViewModels;
+@using System.Globalization;
 @{
 	ViewData["Title"] = "Detail";
 }
@@ -17,7 +18,7 @@
 					<div class="event-details-img">
 						<img src="~/assets/img/event/@Model.ImageName" alt="event-details">
 						<div class="event-date">
-							<h3>@Model.Date</h3>
+							<h3>@Model.Date.Day @CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Model.Date.Month)</h3>
 						</div>
 					</div>
 					<div class="event-details-content">

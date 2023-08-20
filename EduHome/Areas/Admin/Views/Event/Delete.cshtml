@@ -12,9 +12,9 @@
 
             <a class="btn btn-primary" asp-action="index">GO BACK</a>
 
-            <img src="~/assets/img/event//@Model.ImageName" style="width:25%" />
+            <img src="~/assets/img/Event//@Model.ImageName" style="width:25%" />
             <h1>Name:@Model.Name</h1>
-            <h1 style="font-size:15px">Description:@Model.Description</h1>
+            <h1>@Html.Raw(Model.Description)</h1>
             <form method="post">
                 <button class="btn btn-danger" type="submit">Delete Event</button>
 

@@ -14,6 +14,5 @@ public class CategoryMapperProfile : Profile
         CreateMap<Category, DetailCategoryViewModel>().ForMember(cvc => cvc.Courses, x => x.MapFrom(c => c.CourseCategories.Select(cvc => cvc.Course.Name))).ReverseMap();
         CreateMap<Category, UpdateCategoryViewModel>().ForMember(cvc => cvc.CourseId, x => x.MapFrom(c => c.CourseCategories.Select(cvc => cvc.CourseId)))
             .ReverseMap();
-
     }
 }

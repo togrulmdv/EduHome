@@ -16,13 +16,13 @@
 
             <img src="~/assets/img/course//@Model.ImageName" style="width:25%" />
             <h1>Name:@Model.Name</h1>
-            <h1 style="font-size:15px">Description:@Model.Description</h1>
+            <h1 style="font-size:15px">Description:@Html.Raw(Model.ShortDescription)</h1>
             <h1 style="font-size:15px">ClassDuration:@Model.ClassDuration</h1>
             <h1 style="font-size:15px">Duration:@Model.Duration</h1>
             <h1 style="font-size:15px">Language:@Model.Language</h1>
-            <h1 style="font-size:15px">Start:@Model.Start</h1>
+            <h1 style="font-size:15px">Start:@Model.StartDate</h1>
             <h1 style="font-size:15px">SkillLevel:@Model.SkillLevel</h1>
-            <h1 style="font-size:15px">Students number:@Model.Students</h1>
+            <h1 style="font-size:15px">Students number:@Model.StudentCount</h1>
             <h1 style="font-size:15px">Assestment:@Model.Assestment</h1>
 
 

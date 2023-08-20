@@ -20,7 +20,7 @@ public class TeacherController : Controller
 
 	public async Task<IActionResult> Index()
 	{
-		var teachers = await _context.Teachers.OrderByDescending(t => t.CreatedDate).ToListAsync();
+		var teachers = await _context.Teachers.OrderByDescending(t => t.CreatedDate).Include(t => t.SocialMedias).ToListAsync();
 		List<TeacherCardViewModel> teacherCardViewModels = _mapper.Map<List<TeacherCardViewModel>>(teachers);
 
 		return View(teacherCardViewModels);
@@ -28,20 +28,14 @@ public class TeacherController : Controller
 
 	public async Task<IActionResult> Detail(int id)
 	{
-		var teacher = await _context.Teachers.Include(t => t.TeacherSkills).ThenInclude(t => t.Skill).FirstOrDefaultAsync(t => t.Id == id);
-		var teacherSkills = await _context.TeacherSkills.Where(t => t.TeacherId == id).ToListAsync();
-		
+		var teacher = await _context.Teachers.Include(t => t.SocialMedias).Include(t => t.TeacherSkills).ThenInclude(t => t.Skill).FirstOrDefaultAsync(t => t.Id == id);
+
 		if (teacher is null)
 		{
 			return NotFound();
 		}
-		
+
 		var teacherDetailViewModel = _mapper.Map<TeacherDetailViewModel>(teacher);
-		
-		for (int i = 0; i < teacherSkills.Count(); i++)
-		{
-			teacherDetailViewModel.Percentage[i] = teacherSkills[i].Percentage;
-		}
 
 		return View(teacherDetailViewModel);
 	}

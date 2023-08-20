@@ -1,6 +1,8 @@
-﻿namespace EduHome.Areas.Admin.ViewModels.SocialMediaViewModels
+﻿namespace EduHome.Areas.Admin.ViewModels.SocialMediaViewModels;
+
+public class UpdateSocialMediaViewModel
 {
-	public class UpdateSocialMediaViewModel
-	{
-	}
+    public string URL { get; set; }
+    public string IconName { get; set; }
+    public int? TeacherId { get; set; }
 }
