@@ -12,7 +12,7 @@
         public string SkillLevel { get; set; }
         public string Language { get; set; }
         public int StudentCount { get; set; }
-        public string Assestment { get; set; }
+        public string Assesment { get; set; }
         public List<int>? CategoryId { get; set; }
     }
 }

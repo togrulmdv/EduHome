@@ -14,7 +14,7 @@ namespace EduHome.Areas.Admin.ViewModels.CourseViewModels
         public string SkillLevel { get; set; }
         public string Language { get; set; }
         public int StudentCount { get; set; }
-        public string Assestment { get; set; }
+        public string Assesment { get; set; }
         public string CreatedBy { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
