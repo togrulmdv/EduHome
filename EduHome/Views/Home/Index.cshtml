@@ -20,7 +20,7 @@
 								<div class="slide-content-wrapper">
 									<div class="slide-content text-center">
 										<h2>@sliders.Title </h2>
-										<p>@sliders.Description  </p>
+										@Html.Raw(sliders.Description)
 										<a class="default-btn" asp-controller="About">Learn more</a>
 									</div>
 								</div>
@@ -108,7 +108,7 @@
 						</div>
 						<div class="course-content">
 							<h3><a asp-action="Detail" asp-controller="Courses" asp-route-id="@courses.Id">@courses.Name</a></h3>
-							<p>@courses.ShortDescription</p>
+							<p>@Html.Raw(courses.ShortDescription)</p>
 							<a class="default-btn"  asp-controller="Courses" asp-action="Detail" asp-route-id="@courses.Id">read more</a>
 						</div>
 					</div>
