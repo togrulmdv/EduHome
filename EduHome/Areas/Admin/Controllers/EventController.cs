@@ -112,7 +112,7 @@ public class EventController : Controller
 
         await _context.Events.AddAsync(newEvent);
 
-        foreach (var subscribe in _context.Subscribes)
+        foreach (var subscribe in _context.Subscribes.Where(s=>s.IsSubscribed))
         {
 
             MailRequest mailRequest = new MailRequest()

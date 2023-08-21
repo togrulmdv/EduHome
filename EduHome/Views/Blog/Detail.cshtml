@@ -21,7 +21,7 @@
                     <div class="blog-details-content">
                         <h2>@Model.Name</h2>
                         <h6>By @Model.CreatedBy  /  @Model.Date.Day   @CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(Model.Date.Month), @Model.Date.Year  /  <i class="fa fa-comments-o"></i> @Model.CommentCount</h6>
-                        <p>@Model.Description</p>
+                        <p>@Html.Raw(Model.Description)</p>
 
                     </div>
                     <div class="reply-area">
