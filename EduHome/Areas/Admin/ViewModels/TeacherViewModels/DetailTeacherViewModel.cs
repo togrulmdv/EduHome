@@ -19,7 +19,7 @@ public class DetailTeacherViewModel
     public string UpdatedBy { get; set; }
     public DateTime CreatedDate { get; set; }
     public DateTime UpdatedDate { get; set; }
-    public List<byte> Percentage { get; set; }
+    public List<float> Percentage { get; set; }
     public List<string>? SkillName { get; set; }
-    public List<SocialMedia>? SocialMedia { get; set; }
+    public List<SocialMedia> SocialMedia { get; set; }
 }

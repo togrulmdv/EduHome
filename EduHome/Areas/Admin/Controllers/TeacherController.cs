@@ -156,10 +156,10 @@ public class TeacherController : Controller
 
 
         var detailTeacherViewModel = _mapper.Map<DetailTeacherViewModel>(teacher);
-        //for (int i = 0; i < teacherSkills.Count(); i++)
-        //{
-        //    detailTeacherViewModel.Percentage[i] = teacherSkills[i].Percentage;
-        //}
+        for (int i = 0; i < teacherSkills.Count(); i++)
+        {
+            detailTeacherViewModel.Percentage[i] = teacherSkills[i].Percentage;
+        }
         return View(detailTeacherViewModel);
 
     }
@@ -212,10 +212,10 @@ public class TeacherController : Controller
         var percent = await _context.TeacherSkills.Where(ts => ts.TeacherId == Id).ToListAsync();
 
         var updateTeacherViewModel = _mapper.Map<UpdateTeacherViewModel>(Teacher);
-        //for (int i = 0; i < percent.Count(); i++)
-        //{
-        //    updateTeacherViewModel.Percentage[i] = percent[i].Percentage;
-        //}
+        for (int i = 0; i < percent.Count(); i++)
+        {
+            updateTeacherViewModel.Percentage[i] = percent[i].Percentage;
+        }
 
         return View(updateTeacherViewModel);
 

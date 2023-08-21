@@ -31,34 +31,26 @@
                     <h4>contact information</h4>
 
                     <ul>
-                        @* @foreach (var socialMedia in Model.SocialMedia)
+                        @foreach (var socialMedia in Model.SocialMedia)
                         {
 
-                            <li><a href="@socialMedia.URL">@Html.Raw(socialMedia.IconName)</a></li>
+                            <li>@socialMedia.URL - @socialMedia.IconName</li>
 
 
-                        } *@
+                        }
                     </ul>
                 </div>
             </div>
 
 
 
-           @*  @for (int i = 0; i < Model.SkillName.Count(); i++)
+            @for (int i = 0; i < Model.SkillName.Count(); i++)
             {
-                <h1>Skill:@Model.SkillName[i] :@Model.Percent[i]  </h1>
+                <h1>Skill: @Model.SkillName[i] - @Model.Percentage[i]  </h1>
 
             }
-
-            @foreach (var skill in Model.SkillName)
-            {
-            } *@
-
-
-
 
         </div>
     </div>
 </div>
 
-<script src="https://kit.fontawesome.com/8f2bd1d04c.js" crossorigin="anonymous"></script>

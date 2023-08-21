@@ -28,8 +28,10 @@ public class TeacherMapperProfile : Profile
             .ReverseMap();
 
 
-        CreateMap<Teacher, DetailTeacherViewModel>().ForMember(dt => dt.Percentage, x => x.MapFrom(t => t.TeacherSkills.Select(t => t.Percentage)))
+        CreateMap<Teacher, DetailTeacherViewModel>()
+            .ForMember(dt => dt.Percentage, x => x.MapFrom(t => t.TeacherSkills.Select(t => t.Percentage)))
             .ForMember(dt => dt.SkillName, x => x.MapFrom(t => t.TeacherSkills.Select(t => t.Skill.Name)))
+            .ForMember(dt => dt.SocialMedia, x=>x.MapFrom(t=>t.SocialMedias))
             .ReverseMap();
 
         CreateMap<CreateTeacherViewModel, Teacher>()

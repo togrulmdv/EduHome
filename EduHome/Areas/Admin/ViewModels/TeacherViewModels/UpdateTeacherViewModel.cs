@@ -15,5 +15,5 @@ public class UpdateTeacherViewModel
     public string Skype { get; set; }
     public List<string>? SkillName { get; set; }
     public List<int>? SkillId { get; set; }
-    public List<byte> Percentage { get; set; }
+    public List<float> Percentage { get; set; }
 }

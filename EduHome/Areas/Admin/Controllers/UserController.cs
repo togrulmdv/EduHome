@@ -121,13 +121,6 @@ public class UserController : Controller
 
         await _context.UserRoles.AddRangeAsync(identityUserRole);
 
-
-
-
-
-
-        //await _context.UserRoles.AddAsync(new IdentityUserRole<string> { UserId = userRole.UserId, RoleId = changeUserViewModel.RoleId });
-
         await _context.SaveChangesAsync();
 
         return RedirectToAction(nameof(Index));
@@ -169,99 +162,9 @@ public class UserController : Controller
 
         return RedirectToAction(nameof(Index));
     }
-    [Authorize(Roles = "Admin,Moderator")]
-    public async Task<IActionResult> Create()
-    {
-        return View();
-    }
     [HttpPost]
     [ValidateAntiForgeryToken]
     [Authorize(Roles = "Admin,Moderator")]
-    //public async Task<IActionResult> Create(CreateUserViewModel createUserViewModel)
-    //{
-    //    if (!ModelState.IsValid)
-    //    {
-    //        return View();
-    //    }
-
-    //    var newUser = _mapper.Map<AppUser>(createUserViewModel);
-    //    if (newUser is null)
-    //    {
-    //        return BadRequest();
-    //    }
-
-    //    var identityResult = await _userManager.CreateAsync(newUser, createUserViewModel.Password);
-
-    //    if (!identityResult.Succeeded)
-    //    {
-    //        foreach (var error in identityResult.Errors)
-    //        {
-    //            ModelState.AddModelError("", error.Description);
-
-    //        }
-    //        return View();
-
-
-    //    }
-
-    //    var Token = await _userManager.GenerateEmailConfirmationTokenAsync(newUser);
-    //    var Link = Url.Action("ConfirmEmail", "User", new { email = createUserViewModel.Email, token = Token }, HttpContext.Request.Scheme);
-    //    var body = await GetEmailTemplate(Link);
-    //    MailRequest mailRequest = new MailRequest()
-    //    {
-    //        Subject = "Confirm Mail",
-    //        ToEmail = createUserViewModel.Email,
-    //        Body = body
-    //    };
-    //    await _mailService.SendEMailAsync(mailRequest);
-
-    //    await _userManager.AddToRoleAsync(newUser, Roles.Member.ToString());
-    //    return RedirectToAction(nameof(Index));
-
-
-
-
-    //}
-    //public async Task<IActionResult> ConfirmEmail(string email, string token)
-    //{
-    //    if (string.IsNullOrWhiteSpace(token) || string.IsNullOrWhiteSpace(email))
-    //    {
-    //        return NotFound();
-    //    }
-    //    var User = await _userManager.FindByEmailAsync(email);
-    //    if (User is null)
-    //    {
-    //        return NotFound();
-    //    }
-
-    //    IdentityResult identityResult = await _userManager.ConfirmEmailAsync(User, token);
-    //    if (!identityResult.Succeeded)
-    //    {
-    //        return BadRequest();
-    //    }
-    //    User.IsActive = true;
-
-    //    _context.Users.Update(User);
-    //    await _context.SaveChangesAsync();
-
-    //    return RedirectToAction(nameof(Success));
-
-
-    //}
-
-    public IActionResult Success()
-    {
-        return Ok("Success");
-    }
-    private async Task<string> GetEmailTemplate(string link)
-    {
-        string path = Path.Combine(_webHostEnvironment.WebRootPath, "assets", "Templates", "confirm-email.html");
-        using StreamReader streamReader = new StreamReader(path);
-        string result = await streamReader.ReadToEndAsync();
-        return result.Replace("[link]", link);
-
-
-    }
     public async Task<IActionResult> Update(string Id)
     {
 
