@@ -13,12 +13,12 @@
 
                     <div class="table-responsive">
 
-                        <a class="btn btn-primary" asp-action="create">Create</a>
                         <table class="table">
                             <thead>
                                 <tr>
                                     <th>UserName</th>
-                                    <th>Fullname</th>
+                                    <th>Name</th>
+                                    <th>Surname</th>
                                     <th>Email</th>
                                     <th>Is Active</th>
                                     <th>Actions</th>
@@ -29,11 +29,11 @@
                                 {
                                     <tr>
 
-                                        <td>User name:@user.UserName</td>
-                                        <td>Full name:@user.Name</td>
-                                        <td>Full name:@user.Surname</td>
-                                        <td>Email:@user.Email</td>
-                                        <td>Is Active:@(user.IsActive ? "Yes" : "No") </td>
+                                        <td>@user.UserName</td>
+                                        <td>@user.Name</td>
+                                        <td>@user.Surname</td>
+                                        <td>@user.Email</td>
+                                        <td>@(user.IsActive ? "Yes" : "No") </td>
 
 
                                         <td><a class="btn btn-primary" asp-action="Detail" asp-route-id="@user.Id">Detail</a></td>

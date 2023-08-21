@@ -1,7 +1,104 @@
-﻿
+﻿@using EduHome.Areas.Admin.ViewModels.TeacherViewModels;
+
 @{
     ViewData["Title"] = "Update";
 }
 
-<h2>Update</h2>
+@model UpdateTeacherViewModel
 
+<div class="col-md-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Update Teacher</h4>
+
+            <form class="forms-sample" method="post" enctype="multipart/form-data">
+                <div asp-validation-summary="ModelOnly"></div>
+                <div class="form-group">
+                    <label for="exampleInputUsername1">Image</label>
+                    <input asp-for="Image" class="form-control" placeholder="Image">
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Name</label>
+                    <input asp-for="Name" class="form-control" placeholder="Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Description</label>
+                    <input asp-for="Description" class="form-control" placeholder="Description">
+                    <span asp-validation-for="Description" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Role</label>
+                    <input asp-for="Role" class="form-control" placeholder="Role">
+                    <span asp-validation-for="Role" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Degree</label>
+                    <input asp-for="Degree" class="form-control" placeholder="Degree">
+                    <span asp-validation-for="Degree" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Experience</label>
+                    <input asp-for="Experience" class="form-control" placeholder="Experience">
+                    <span asp-validation-for="Experience" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Hobbies</label>
+                    <input asp-for="Hobbies" class="form-control" placeholder="Hobbies">
+                    <span asp-validation-for="Hobbies" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">PhoneNumber</label>
+                    <input asp-for="PhoneNumber" class="form-control" placeholder="PhoneNumber">
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Email</label>
+                    <input asp-for="Email" class="form-control" placeholder="Email">
+                    <span asp-validation-for="Email" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Skype</label>
+                    <input asp-for="Skype" class="form-control" placeholder="Skype">
+                    <span asp-validation-for="Skype" class="text-danger"></span>
+
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputConfirmPassword1">Faculty</label>
+                    <input asp-for="Faculty" class="form-control" placeholder="Faculty">
+                    <span asp-validation-for="Faculty" class="text-danger"></span>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="Skills">Skills</label>
+                    <select asp-items="@ViewBag.Skills" asp-for="SkillId"></select>
+                </div>
+                <div class="form-group">
+                    @for (int i = 0; i < Model.SkillId.Count(); i++)
+                    {
+                        <div class="form-group">
+                            <label for="exampleInputConfirmPassword1">Percent </label>
+                            <input asp-for="Percentage" value="@Model.Percentage[i]" min="0" max="100" multiple="multiple"></input>
+                            <span asp-validation-for="Percentage" class="text-danger"></span>
+
+                        </div>
+                    }
+
+                </div>
+                <button type="submit" asp-action="UpdateTeacher" class="btn btn-primary mr-2">Submit</button>
+
+            </form>
+        </div>
+    </div>
+</div>

@@ -22,7 +22,7 @@
                                     <th>IsDeleted</th>
                                     <th>Image</th>
                                     <th>Name</th>
-                                    <th>Duty</th>
+                                    <th>Role</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -31,7 +31,7 @@
                                 {
                                     <tr>
 
-                                        <td>  <a class="btn btn-@( teacher.IsDeleted ? "danger" : "success") ">@teacher.IsDeleted</a></td>
+                                        <td>@teacher.IsDeleted</td>
 
                                         <td><img src="~/assets/img/teacher//@teacher.ImageName" /></td>
                                         <td>@teacher.Name</td>

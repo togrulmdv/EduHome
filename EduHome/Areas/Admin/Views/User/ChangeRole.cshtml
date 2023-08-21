@@ -1,7 +1,7 @@
 ﻿@using EduHome.Areas.Admin.ViewModels.UserViewModels;
 
 @{
-    ViewData["Title"] = "Change role";
+    ViewData["Title"] = "ChangeRole";
 }
 
 @model ChangeUserViewModel
@@ -18,7 +18,7 @@
                     <select asp-for="RoleId" asp-items="@ViewBag.Roles" multiple="multiple" class="form-control" id="RoleId">
                     </select>
                 </div>
-       
+
 
                 <button type="submit" asp-action="ChangeRole" class="btn btn-primary mr-2">Update</button>
             </form>

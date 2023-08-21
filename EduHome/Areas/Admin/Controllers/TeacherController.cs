@@ -166,10 +166,6 @@ public class TeacherController : Controller
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int Id)
     {
-        if (_context.Teachers.Count() <= 3)
-        {
-            return BadRequest();
-        }
         var Teacher = await _context.Teachers.FirstOrDefaultAsync(e => e.Id == Id);
         if (Teacher is null)
         {
@@ -186,10 +182,6 @@ public class TeacherController : Controller
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteTeacher(int Id)
     {
-        if (_context.Teachers.Count() <= 3)
-        {
-            return BadRequest();
-        }
         var Teacher = await _context.Teachers.FirstOrDefaultAsync(e => e.Id == Id);
         if (Teacher is null)
         {

@@ -105,10 +105,6 @@ public class BlogController : Controller
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int Id)
     {
-        if (_context.Blogs.Count() <= 3)
-        {
-            return BadRequest();
-        }
         var blog = await _context.Blogs.FirstOrDefaultAsync(s => s.Id == Id);
         if (blog is null)
         {
@@ -123,10 +119,6 @@ public class BlogController : Controller
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteBlog(int Id)
     {
-        if (_context.Blogs.Count() <= 3)
-        {
-            return BadRequest();
-        }
         var blog = await _context.Blogs.FirstOrDefaultAsync(s => s.Id == Id);
         if (blog is null)
         {
@@ -138,8 +130,6 @@ public class BlogController : Controller
         blog.IsDeleted = true;
         await _context.SaveChangesAsync();
         return RedirectToAction(nameof(Index));
-
-
     }
     [Authorize(Roles = "Moderator,Admin")]
     public async Task<IActionResult> Update(int Id)

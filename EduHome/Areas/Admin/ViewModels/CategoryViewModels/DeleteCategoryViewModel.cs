@@ -1,7 +1,6 @@
-﻿namespace EduHome.Areas.Admin.ViewModels.CategoryViewModels
+﻿namespace EduHome.Areas.Admin.ViewModels.CategoryViewModels;
+
+public class DeleteCategoryViewModel
 {
-    public class DeleteCategoryViewModel
-    {
-        public string Name { get; set; }
-    }
+    public string Name { get; set; }
 }

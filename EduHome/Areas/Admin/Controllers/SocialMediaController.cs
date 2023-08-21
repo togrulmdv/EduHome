@@ -121,10 +121,6 @@ public class SocialMediaController : Controller
 
     public async Task<IActionResult> Delete(int Id)
     {
-        if (_context.SocialMedias.Count() <= 3)
-        {
-            return BadRequest();
-        }
         var socialMedia = await _context.SocialMedias.FirstOrDefaultAsync(s => s.Id == Id);
         if (socialMedia is null)
         {
@@ -139,10 +135,6 @@ public class SocialMediaController : Controller
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteSocialMedia(int Id)
     {
-        if (_context.SocialMedias.Count() <= 3)
-        {
-            return BadRequest();
-        }
         var socialMedia = await _context.SocialMedias.FirstOrDefaultAsync(s => s.Id == Id);
         if (socialMedia is null)
         {

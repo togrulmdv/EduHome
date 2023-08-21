@@ -80,10 +80,6 @@ public class SkillController : Controller
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int Id)
     {
-        if (_context.Skills.Count() <= 3)
-        {
-            return BadRequest();
-        }
         var Skill = await _context.Skills.FirstOrDefaultAsync(c => c.Id == Id);
         if (Skill is null)
         {
@@ -100,10 +96,6 @@ public class SkillController : Controller
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteSkill(int Id)
     {
-        if (_context.Skills.Count() <= 3)
-        {
-            return BadRequest();
-        }
         var Skill = await _context.Skills.FirstOrDefaultAsync(c => c.Id == Id);
         if (Skill is null)
         {

@@ -157,10 +157,6 @@ public class EventController : Controller
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int Id)
     {
-        if (_context.Events.Count() <= 3)
-        {
-            return BadRequest();
-        }
         var Event = await _context.Events.FirstOrDefaultAsync(e => e.Id == Id);
         if (Event is null)
         {
@@ -178,10 +174,6 @@ public class EventController : Controller
 
     public async Task<IActionResult> DeleteEvent(int Id)
     {
-        if (_context.Events.Count() <= 3)
-        {
-            return BadRequest();
-        }
         var Event = await _context.Events.FirstOrDefaultAsync(e => e.Id == Id);
         if (Event is null)
         {

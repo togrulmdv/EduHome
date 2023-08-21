@@ -129,10 +129,6 @@ public class SpeakerController : Controller
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int Id)
     {
-        if (_context.Speakers.Count() <= 2)
-        {
-            return BadRequest();
-        }
         var Speaker = await _context.Speakers.FirstOrDefaultAsync(e => e.Id == Id);
         if (Speaker is null)
         {
@@ -149,10 +145,6 @@ public class SpeakerController : Controller
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteEvent(int Id)
     {
-        if (_context.Speakers.Count() <= 2)
-        {
-            return BadRequest();
-        }
         var Speaker = await _context.Speakers.FirstOrDefaultAsync(e => e.Id == Id);
         if (Speaker is null)
         {

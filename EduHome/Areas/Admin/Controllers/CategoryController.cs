@@ -102,16 +102,12 @@ public class CategoryController : Controller
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int Id)
     {
-        if (_context.Categories.Count() <= 3)
-        {
-            return BadRequest();
-        }
         var Category = await _context.Categories.FirstOrDefaultAsync(c => c.Id == Id);
         if (Category is null)
         {
             return NotFound();
         }
-        var categoryViewModel = _mapper.Map<CategoryViewModel>(Category);
+        var categoryViewModel = _mapper.Map<DeleteCategoryViewModel>(Category);
         return View(categoryViewModel);
 
 
@@ -122,10 +118,7 @@ public class CategoryController : Controller
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteCategory(int Id)
     {
-        if (_context.Categories.Count() <= 3)
-        {
-            return BadRequest();
-        }
+       
         var Category = await _context.Categories.FirstOrDefaultAsync(c => c.Id == Id);
         if (Category is null)
         {

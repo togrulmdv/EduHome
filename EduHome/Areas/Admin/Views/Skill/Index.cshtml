@@ -28,7 +28,7 @@
                                 @foreach (SkillViewModel skill in Model)
                                 {
                                     <tr>
-                                        <td>  <a class="btn btn-@( skill.IsDeleted ? "danger" : "success") ">@skill.IsDeleted</a></td>
+                                        <td>@skill.IsDeleted</td>
 
 
                                         <td>@skill.Name</td>

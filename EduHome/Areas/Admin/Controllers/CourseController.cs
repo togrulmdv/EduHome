@@ -133,10 +133,6 @@ public class CourseController : Controller
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int Id)
     {
-        if (_context.Courses.Count() <= 3)
-        {
-            return BadRequest();
-        }
         var Course = await _context.Courses.FirstOrDefaultAsync(e => e.Id == Id);
         if (Course is null)
         {
@@ -153,10 +149,6 @@ public class CourseController : Controller
     [Authorize(Roles = "Admin")]
     public async Task<IActionResult> DeleteEvent(int Id)
     {
-        if (_context.Courses.Count() <= 3)
-        {
-            return BadRequest();
-        }
         var Course = await _context.Courses.FirstOrDefaultAsync(e => e.Id == Id);
         if (Course is null)
         {
